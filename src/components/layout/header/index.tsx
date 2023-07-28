@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { width } from "../../../commons/styles/styles";
+import { ShoppingFilled } from "@ant-design/icons";
 
 const Wrap = styled.div`
   position: relative;
@@ -20,6 +21,9 @@ const Wrap = styled.div`
 
 const TopWrap = styled.div`
   height: 36px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
   &::after {
     position: absolute;
     right: 0;
@@ -33,13 +37,57 @@ const TopWrap = styled.div`
 
 const Top = styled.div`
   ${width.contentWrap}
+  position: relative;
+  z-index: 1;
+  color: #fff;
+`;
+
+const RightWrap = styled.div`
+  /* width: 300px; */
+  justify-content: flex-end;
+  display: flex;
+`;
+
+const CartDiv = styled.div`
+  display: flex;
+`;
+
+const CartText = styled.span`
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+`;
+
+const CartIcon = styled(ShoppingFilled)`
+  font-size: 20px;
+`;
+
+const LoginText = styled.span`
+  display: flex;
+  align-items: center;
+  &::before {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    content: "";
+    margin: 0 10px;
+  }
 `;
 
 function Header() {
   return (
     <Wrap>
       <TopWrap>
-        <Top></Top>
+        <Top>
+          <RightWrap>
+            <CartDiv>
+              <CartIcon />
+              <CartText>장바구니</CartText>
+              <LoginText>로그인</LoginText>
+            </CartDiv>
+          </RightWrap>
+        </Top>
       </TopWrap>
     </Wrap>
   );
