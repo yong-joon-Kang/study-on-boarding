@@ -1,19 +1,33 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../commons/library/redux/store"; // RootState를 가져옴
 import * as S from "./Products.styles";
+import Image from "next/image";
+import { getComma } from "@/commons/library/utils";
 
-const ProductsPresenter = () => {
-  const productItems = useSelector((state: RootState) => state.products);
+const ProductsPresenter = (props: any) => {
   return (
     <S.Wrap>
       <h1>Product List</h1>
-      <ul>
-        {productItems?.map((item: any) => (
-          <li key={item.item_no}>
-            {item.item_name} - Price: {item.price}, Score: {item.score}
-          </li>
-        ))}
-      </ul>
+      {props.productItems?.map((item: any, index: number) => (
+        <>
+          <S.ProductWrap key={item.no}>
+            <S.Top>
+              <Image
+                src={item.detail_image_url}
+                alt={"hors-doeuvre-ge5d8b6f13_640"}
+                layout="fill"
+                objectFit="cover"
+              />
+            </S.Top>
+            <S.Bottom>
+              <S.ItemName>{item.item_name}</S.ItemName>
+              <S.Price>{getComma(item.price)}원</S.Price>
+              <S.Score>평점 {item.score}</S.Score>
+            </S.Bottom>
+          </S.ProductWrap>
+          {(index + 1) % 5 === 0 && <br />}
+        </>
+      ))}
     </S.Wrap>
   );
 };
