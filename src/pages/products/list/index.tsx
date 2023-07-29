@@ -3,16 +3,28 @@ import { GetServerSideProps } from "next";
 
 import ProductsContainer from "@/components/products/Products.container";
 import PaginationContainer from "@/components/commons/pagination/Pagination.container";
+import { useState } from "react";
+import { ProductItemsType } from "@/pages/api/ProductItems.types";
 
-function Index({ productItems }: any) {
+function Index({ productItems }: ProductItemsType) {
   // ssr csr 개념 공부
   // redux recoil 차이점
   // props로 데이터 넘긴다
 
+  const [productList, setProductList] = useState(productItems);
+
+  const onClickPageNum = (pageNum: number) => {
+    const page = (pageNum || 1) * 5;
+    setProductList(productItems.slice(page - 5, page));
+  };
+
   return (
     <>
-      <ProductsContainer productItems={productItems} />
-      <PaginationContainer productItems={productItems} />
+      <ProductsContainer productList={productList} />
+      <PaginationContainer
+        productLength={productItems.length}
+        onClickPageNum={onClickPageNum}
+      />
     </>
   );
 }
