@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { width } from "../../../commons/styles/styles";
 import { ShoppingFilled } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 const Wrap = styled.div`
   position: relative;
@@ -56,6 +57,7 @@ const CartText = styled.span`
   margin-left: 5px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const CartIcon = styled(ShoppingFilled)`
@@ -73,9 +75,11 @@ const LoginText = styled.span`
     content: "";
     margin: 0 10px;
   }
+  cursor: pointer;
 `;
 
 function Header() {
+  const router = useRouter();
   return (
     <Wrap>
       <TopWrap>
@@ -83,7 +87,13 @@ function Header() {
           <RightWrap>
             <CartDiv>
               <CartIcon />
-              <CartText>장바구니</CartText>
+              <CartText
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              >
+                장바구니
+              </CartText>
               <LoginText>로그인</LoginText>
             </CartDiv>
           </RightWrap>
