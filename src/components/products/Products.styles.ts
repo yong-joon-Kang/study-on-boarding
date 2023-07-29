@@ -1,3 +1,4 @@
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
 export const Wrap = styled.div`
@@ -22,6 +23,22 @@ export const Top = styled.div`
   width: 100%;
   height: 200px;
   position: relative;
+`;
+
+export const ShopIcon = styled(ShoppingCartOutlined)`
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 25px;
+  border-radius: 100%;
+  padding: 5px 8px 5px 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: #eee;
+  :hover {
+    font-size: 30px;
+    transition: 0.15s;
+    margin: -2px;
+  }
 `;
 
 export const Bottom = styled.div`

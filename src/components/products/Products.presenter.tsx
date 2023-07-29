@@ -1,14 +1,13 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../commons/library/redux/store"; // RootState를 가져옴
 import * as S from "./Products.styles";
 import Image from "next/image";
 import { getComma } from "@/commons/library/utils";
+import { ProductsToContPropsType } from "./Products.types";
 
-const ProductsPresenter = (props: any) => {
+const ProductsPresenter = (props: ProductsToContPropsType) => {
   return (
     <S.Wrap>
       <h1>Product List</h1>
-      {props.productItems?.map((item: any, index: number) => (
+      {props.productList?.map((item: any, index: number) => (
         <>
           <S.ProductWrap key={item.no}>
             <S.Top>
@@ -18,6 +17,7 @@ const ProductsPresenter = (props: any) => {
                 layout="fill"
                 objectFit="cover"
               />
+              <S.ShopIcon onClick={() => props.onClickShopIcon(item)} />
             </S.Top>
             <S.Bottom>
               <S.ItemName>{item.item_name}</S.ItemName>
